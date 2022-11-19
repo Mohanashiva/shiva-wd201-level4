@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const todo = require("../todo");
 const { all, add, markAsComplete, overdue, dueToday, dueLater } = todo();
 const today = new Date().toLocaleDateString("en-CA");
