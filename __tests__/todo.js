@@ -5,56 +5,61 @@ const today = new Date().toLocaleDateString("en-CA");
 describe("TODO test suite", () => {
   beforeAll(() => {
     add({
-      title: "study for exam",
+      title: "study for the exam",
       dueDate: today,
       completed: true,
     });
   });
-  test("Add task", () => {
-    let lengthBefore = all.length;
+
+  test("Add a task", () => {
+    let PreviousLength = all.length;
     add({
       title: "play videogame",
       dueDate: today,
       completed: false,
     });
-    expect(all.length).toBe(lengthBefore + 1);
+    expect(all.length).toBe(PreviousLength + 1);
   });
-  test("Mark task as complete", () => {
+
+  test("Mark the task as complete", () => {
     all[0].completed = false;
     markAsComplete(0);
     expect(all[0].completed).toBe(true);
   });
-  test("Over due tasks", () => {
-    const overdueItems = overdue();
-    var prev_date = new Date();
-    prev_date.setDate(prev_date.getDate() - 1);
-    let yesterday = prev_date.toLocaleDateString("en-CA");
+
+  test("For Overdue tasks", () => {
+    const MyOverDueItems = overdue();
+    var Old_Date = new Date();
+    Old_Date.setDate(Old_Date.getDate() - 1);
+    let yesterday = Old_Date.toLocaleDateString("en-CA");
     add({
-      title: "watch movie",
+      title: "watch a movie",
       dueDate: yesterday,
       completed: false,
     });
-    expect(overdue().length).toBe(overdueItems.length + 1);
+    expect(overdue().length).toBe(MyOverDueItems.length + 1);
   });
-  test("Due today tasks", () => {
-    const todayItems = dueToday();
+
+  test("For Due today tasks", () => {
+    const MyTodayItems = dueToday();
     add({
-      title: "update windows",
+      title: "update my windows",
       dueDate: today,
       completed: false,
     });
-    expect(dueToday().length).toBe(todayItems.length + 1);
+    expect(dueToday().length).toBe(MyTodayItems.length + 1);
   });
-  test("Due later tasks", () => {
-    const duelaterItems = dueLater();
-    var next_date = new Date();
-    next_date.setDate(next_date.getDate() + 1);
-    let tomorrow = next_date.toLocaleDateString("en-CA");
+
+  test("For Due later tasks", () => {
+    const MyDueLaterItems = dueLater();
+    var Upcoming_date = new Date();
+    Upcoming_date.setDate(Upcoming_date.getDate() + 1);
+    let tomorrow = Upcoming_date.toLocaleDateString("en-CA");
     add({
-      title: "Pay bills",
+      title: "Pay all bills",
       dueDate: tomorrow,
       completed: false,
     });
-    expect(dueLater().length).toBe(duelaterItems.length + 1);
+    expect(dueLater().length).toBe(MyDueLaterItems.length + 1);
   });
 });
